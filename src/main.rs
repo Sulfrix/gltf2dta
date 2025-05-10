@@ -1,6 +1,6 @@
 use std::fmt::Debug;
 
-use arson::{stdlib::stdio::print, Context, Node, NodeCommand};
+use arson::{Context, NodeCommand};
 use clap::Parser;
 use gltf::mesh::util::{ReadIndices, ReadTexCoords};
 
@@ -149,6 +149,11 @@ fn main() {
                     i = 0;
                     for vert in uvs {
                         println!("{}", cmd_set_vert_uv(name, &mut ctx, i, vert));
+                        i += 1;
+                    }
+                    i = 0;
+                    for face in indices {
+                        println!("{}", cmd_set_face(name, &mut ctx, i, face));
                         i += 1;
                     }
                 }
