@@ -1,0 +1,9 @@
+[package]
+name = "gltf2dta"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+arson = { git = "https://github.com/hmxmilohax/arson.git", version = "0.3.0" }
+clap = { version = "4.5.37", features = ["derive"] }
+gltf = "1.4.1"
