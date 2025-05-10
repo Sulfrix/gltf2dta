@@ -87,6 +87,7 @@ fn main() {
     for scene in gltf.scenes() {
         for node in scene.nodes() {
             if let Some(mesh) = node.mesh() {
+                let mut primitive_index = 0;
                 for primitive in mesh.primitives() {
                     let mut positions: Vec<[f32; 3]> = Vec::new();
                     let mut normals: Vec<[f32; 3]> = Vec::new();
@@ -123,7 +124,10 @@ fn main() {
                         }
                     }
 
-                    let mut name_string = String::from(mesh.name().unwrap());
+                    let mut name_string = String::from(node.name().unwrap());
+                    if primitive_index > 0 {
+                        name_string.push_str(format!("_{}", primitive.index()).as_str());
+                    }
                     if !name_string.ends_with(".mesh") {
                         name_string.push_str(".mesh");
                     }
@@ -156,6 +160,7 @@ fn main() {
                         println!("{}", cmd_set_face(name, &mut ctx, i, face));
                         i += 1;
                     }
+                    primitive_index += 1;
                 }
             }
         }
